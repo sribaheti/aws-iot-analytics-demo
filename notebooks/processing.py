@@ -24,50 +24,47 @@ from sagemaker_containers.beta.framework import (
 
 # Since we get a headerless CSV file we specify the column names here.
 feature_columns_names = [
-    'State',
-    'Account Length',
-    'Area Code',
-    'Phone',
-    "Int'l Plan",
-    'VMail Plan',
-    'VMail Message',
-    'Day Mins',
-    'Day Calls',
-    'Day Charge',
-    'Eve Mins',
-    'Eve Calls',
-    'Eve Charge',
-    'Night Mins',
-    'Night Calls',
-    'Night Charge',
-    'Intl Mins',
-    'Intl Calls',
-    'Intl Charge',
-    'CustServ Calls'] 
+    'date',
+    'type',
+    'note',
+    'med',
+    "doses",
+    'preemp',
+    'symptoms',
+    'triggers',
+    'activitymonth',
+    'activitydate',
+    'activityyear',
+    'zipcode',
+    'patientid',
+    'locationid',
+    'condition',
+    '_id_',
+    'status',
+    '__dt'
+    ] 
 
 label_column = 'Churn?'
 
 feature_columns_dtype = {
-    'State' :  str,
-    'Account Length' :  np.int64,
-    'Area Code' :  str,
-    'Phone' :  str,
-    "Int'l Plan" :  str,
-    'VMail Plan' :  str,
-    'VMail Message' :  np.int64,
-    'Day Mins' :  np.float64,
-    'Day Calls' :  np.int64,
-    'Day Charge' :  np.float64,
-    'Eve Mins' :  np.float64,
-    'Eve Calls' :  np.int64,
-    'Eve Charge' :  np.float64,
-    'Night Mins' :  np.float64,
-    'Night Calls' :  np.int64,
-    'Night Charge' :  np.float64,
-    'Intl Mins' :  np.float64,
-    'Intl Calls' :  np.int64,
-    'Intl Charge' :  np.float64,
-    'CustServ Calls' :  np.int64}
+    'date' :  np.datetime64,
+    'type' :  str,
+    'note' :  str,
+    'med' :  str,
+    "doses" :  np.int64,
+    'preemp' :  str,
+    'symptoms' :  str,
+    'triggers' :  str,
+    'activitymonth' :  str,
+    'acvtivitydate' :  np.int64,
+    'activityyear' :  np.int64,
+    'zipcode' :  np.int64,
+    'patientid' :  np.int64,
+    'locationid' : np.int64,
+    'condition' :  str,
+    '_id_' :  str,
+    'status' :  str,
+    '__dt' :  np.datetime64}
 
 label_column_dtype = {'Churn?': str}  
 
@@ -112,24 +109,19 @@ if __name__ == '__main__':
     concat_data = pd.concat(raw_data)
 
     numeric_features = list([
-    'Account Length',
-    'VMail Message',
-    'Day Mins',
-    'Day Calls',
-    'Eve Mins',
-    'Eve Calls',
-    'Night Mins',
-    'Night Calls',
-    'Intl Mins',
-    'Intl Calls',
-    'CustServ Calls'])
+    'doses',
+    'patientid',
+    'locationid',
+    'zipcode',
+    'activitydate',
+    'activityyear'])
 
 
     numeric_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='median')),
         ('scaler', StandardScaler())])
 
-    categorical_features = ['State','Area Code',"Int'l Plan",'VMail Plan']
+    categorical_features = ['type','note',"med",'preemp','symptoms','activitymonth','condition','status']
     categorical_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
         ('onehot', OneHotEncoder(handle_unknown='ignore'))])
