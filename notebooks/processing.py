@@ -24,7 +24,6 @@ from sagemaker_containers.beta.framework import (
 
 # Since we get a headerless CSV file we specify the column names here.
 feature_columns_names = [
-    'date',
     'type',
     'note',
     'med',
@@ -40,14 +39,12 @@ feature_columns_names = [
     'locationid',
     'condition',
     '_id_',
-    'status',
-    '__dt'
+    'status'
     ] 
 
 label_column = 'Churn?'
 
 feature_columns_dtype = {
-    'date' :  np.datetime64,
     'type' :  str,
     'note' :  str,
     'med' :  str,
@@ -63,8 +60,7 @@ feature_columns_dtype = {
     'locationid' : np.int64,
     'condition' :  str,
     '_id_' :  str,
-    'status' :  str,
-    '__dt' :  np.datetime64}
+    'status' :  str}
 
 label_column_dtype = {'Churn?': str}  
 
