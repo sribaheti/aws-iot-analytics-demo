@@ -55,7 +55,7 @@ feature_columns_dtype = {
     'activitymonth' :  str,
     'acvtivitydate' :  np.int64,
     'activityyear' :  np.int64,
-    'zipcode' :  np.float64,
+    'zipcode' :  str,
     'patientid' :  np.int64,
     'locationid' : np.int64,
     'condition' :  str,
