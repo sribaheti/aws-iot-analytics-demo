@@ -106,7 +106,6 @@ if __name__ == '__main__':
     'doses',
     'patientid',
     'locationid',
-    'zipcode',
     'activitydate',
     'activityyear'])
 
