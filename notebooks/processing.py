@@ -37,7 +37,6 @@ feature_columns_names = [
     'patientid',
     'locationid',
     'condition',
-    '_id_',
     'status'
     ] 
 
@@ -57,7 +56,6 @@ feature_columns_dtype = {
     'patientid' :  np.int64,
     'locationid' : np.int64,
     'condition' :  str,
-    '_id_' :  str,
     'status' :  str}
 
 label_column_dtype = {'Churn?': str}  
