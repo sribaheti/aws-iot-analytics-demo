@@ -219,7 +219,7 @@ def predict_fn(input_data, model):
 
         if label_column in input_data:
             # Return the label (as the first column) and the set of features.
-            return np.insert(features.toarray(), 0, pd.get_dummies(input_data[label_column])['True.'], axis=1)
+            return np.insert(features, 0, pd.get_dummies(input_data[label_column])['True.'], axis=1)
         else:
             # Return only the set of features
             return features
